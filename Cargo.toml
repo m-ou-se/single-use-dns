@@ -1,0 +1,17 @@
+[package]
+name = "single-use-dns"
+version = "0.1.0"
+authors = ["Mara Bos <m-ou.se@m-ou.se>"]
+edition = "2018"
+license = "BSD-2-Clause"
+description = "Simple throwaway dns server that temporarily hosts records for a single domain name"
+repository = "https://github.com/m-ou-se/single-use-dns"
+readme = "README.md"
+keywords = ["dns", "server"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+structopt = "0.3.12"
+tokio = "0.2.13"
+trust-dns-client = "0.19.3"
+trust-dns-server = "0.19.3"
