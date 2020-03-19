@@ -32,5 +32,12 @@ dns_single_use_rm() {
 Make sure the domain(s) you're going to use this with have an `NS` record
 for the `_acme-challenge` subdomain pointing to the server you run this on.
 
-You can add the `--listen` option if you want it to listen on a specific
-ip-address instead of the wildcard address: `--listen [fdff:cfcf:eabc:83ef::]:53`.
+Then you should be able to run `acme.sh` with the `--dns dns_single_use` option:
+
+```
+$ acme.sh --issue --dns dns_single_use --dnssleep 0 -d '*.example.com'
+```
+
+You can add the `--listen` option to the `single-use-dns` command if you want
+it to listen on a specific ip-address instead of the wildcard address:
+`--listen [fdff:1234:1234:1234::2]:53`.
