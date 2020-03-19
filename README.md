@@ -11,3 +11,26 @@ $ single-use-dns --domain _acme-challenge.example.com --txt O_FFiiKTKtSYllnIKhXt
 Listening on [::]:53 (UDP and TCP)
 Serving 1 record(s) for _acme-challenge.example.com
 ```
+
+## Using this with `acme.sh`
+
+To use this tool with [`acme.sh`](https://acme.sh/), add a script like the
+following in `~/.acme.sh/dns_single_use.sh`:
+
+```
+#!/usr/bin/env sh
+
+dns_single_use_add() {
+        single-use-dns --domain "$1" --txt "$2" &
+}
+
+dns_single_use_rm() {
+        killall single-use-dns
+}
+```
+
+Make sure the domain(s) you're going to use this with have an `NS` record
+for the `_acme-challenge` subdomain pointing to the server you run this on.
+
+You can add the `--listen` option if you want it to listen on a specific
+ip-address instead of the wildcard address: `--listen [fdff:cfcf:eabc:83ef::]:53`.
